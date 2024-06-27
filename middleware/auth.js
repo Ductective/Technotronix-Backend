@@ -19,6 +19,7 @@ const auth = async (req, res, next) => {
     }
 }
 const admin = async (req, res, next) => {
+    const user = await User.findById(decoded.id).select("-password")
     if(req.user.role !== "admin"){
         res.json("Access Denied")
     }
